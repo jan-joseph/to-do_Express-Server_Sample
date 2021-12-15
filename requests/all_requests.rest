@@ -8,3 +8,6 @@ content-type: application/json
     "name":"Sample",
     "content": "Sun 2021 Dec"
 }
+
+###
+DELETE http://localhost:3001/api/notes/3
