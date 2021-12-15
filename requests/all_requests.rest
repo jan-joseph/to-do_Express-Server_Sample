@@ -6,5 +6,5 @@ content-type: application/json
 
 {
     "name":"Sample",
-    "time": "Sun 2021 Dec"
+    "content": "Sun 2021 Dec"
 }
