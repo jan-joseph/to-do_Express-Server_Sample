@@ -22,6 +22,7 @@ let notes = [
     important: true,
   },
 ];
+// Activating the JSON Parser
 app.use(express.json());
 
 app.get("/", (request, response) => {
@@ -54,7 +55,7 @@ app.post("/api/notes", (request, response) => {
     id: maxId + 1,
     content: reqBody.content,
     date: new Date(),
-    important: reqBody.important,
+    important: reqBody.important | false,
   };
   notes = notes.concat(note);
   response.json(note);
@@ -65,6 +66,12 @@ app.delete("/api/notes/:id", (request, response) => {
   notes = notes.filter((note) => note.id !== id);
   response.status(204).end();
 });
+
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "Unknown Endpoint" });
+};
+app.use(unknownEndpoint);
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port : ${PORT}`);
